@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+        <meta property="og:title" content="台灣登記使用台灣豬證明標章餐廳地圖" />
+        <meta property="og:description" content="現在去到餐廳時要怎麼知道他們用的是不是進口的豬肉，還是台灣的豬肉，在前往餐廳之前大家可以先查一下地圖，看看這家餐廳是否在內，這樣就可以吃的更加安心。" />
+        <meta property="og:locale" content="zh_TW" />
+        <meta property="og:type" content="website" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous"/>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ol3/4.6.5/ol.css" type="text/css" />
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sidebar-v2@0.4.0/css/ol3-sidebar.min.css" type="text/css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.3/css/bootstrap.min.css" integrity="sha512-oc9+XSs1H243/FRN9Rw62Fn8EtxjEYWHXRvjS43YtueEewbS6ObfXcJNyohjHqVKFPoXXUxwc+q1K7Dee6vv9g==" crossorigin="anonymous" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/themes/dark-hive/jquery-ui.min.css" integrity="sha512-Sg7rco5qUS4Y3wzqjxMhM5zj3DJuxnJAildKRzTIJeIdV8xSlIlFgngli3eOBq6Yv0kbz6IjdCvIpqu54d2YIA==" crossorigin="anonymous"/>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/themes/dark-hive/theme.min.css" integrity="sha512-qsqjNWXlJ2WoMJlXaZ6tX9box+K2+OcWrt2VFsutW/QNuALB4wncGXcVM+kAS8Z7fGQ90a4F3QSWUDu6E90YYg==" crossorigin="anonymous"/>
+        <link rel="stylesheet" href="css/taiwan-pork-logo-map.css" type="text/css" />
+        <title>台灣登記使用台灣豬證明標章餐廳地圖</title>
+    </head>
+    <body>
+        <div id="sidebar" class="sidebar collapsed">
+            <div class="sidebar-tabs">
+                <ul role="tablist">
+                    <li>
+                        <a href="#home" role="tab"><i class="fas fa-bars"></i></a>
+                    </li>
+                    <li>
+                        <a href="#book" role="tab"><i class="fas fa-book"></i></a>
+                    </li>
+                    <li>
+                        <a href="#settings" role="tab"><i class="fas fa-cog"></i></a>
+                    </li>
+                    <li>
+                        <a href="https://github.com/henryleeworld/js-registered-restaurants-in-taiwan-applied-for-use-of-the-taiwan-pork-logo-map" role="tab" target="_blank"><i class="fab fa-github"></i></a>
+                    </li>
+                </ul>
+            </div>
+            <div class="sidebar-content">
+                <div class="sidebar-pane" id="home">
+                    <h1 class="sidebar-header">
+                        <span id="sidebarTitle">請點選地圖中的點</span><span class="sidebar-close"><i class="fa fa-caret-left"></i></span>
+                    </h1>
+                    <div id="sidebarContent">請點選地圖中的點</div>
+                    <div class="btn-group-vertical" role="group" style="width: 100%;">
+                        <a href="https://taiwanpork.naif.org.tw/" target="_blank" class="btn btn-primary btn-lg btn-block">申請標章</a>
+                        <a href="https://github.com/henryleeworld/js-registered-restaurants-in-taiwan-applied-for-use-of-the-taiwan-pork-logo-map/issues" target="_blank" class="btn btn-primary btn-lg btn-block">網站問題反應</a>
+                    </div>
+                </div>
+                <div class="sidebar-pane" id="book">
+                    <h1 class="sidebar-header">
+                        <span id="weekTitle">說明</span><span class="sidebar-close"><i class="fa fa-caret-left"></i></span>
+                    </h1>
+                    <div>臺灣豬證明標章商家資料取自<a href="https://data.coa.gov.tw/Query/ServiceDetail.aspx?id=H76" target="_blank">行政院農業委員會資料開放平台</a></div>
+                </div>
+                <div class="sidebar-pane" id="settings">
+                    <h1 class="sidebar-header">
+                        <span id="weekTitle">設定</span><span class="sidebar-close"><i class="fa fa-caret-left"></i></span>
+                    </h1>
+                    <div>
+                        <a href="#" class="btn btn-primary btn-lg btn-block" id="btn-geolocation">回到目前位置</a>
+                        <p><hr/></p>
+                        <div class="card">
+                            <h5 class="card-title">搜尋</h5>
+                            <div class="form-group">
+                                <label for="findPoint">名稱或代號</label>
+                                <input type="text" id="findPoint" name="findPoint" class="form-control" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="map" class="sidebar-map"></div>
+        <script src="js/routie.min.js" type="text/javascript" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js" integrity="sha512-uto9mlQzrs59VwILcLiRYeLKPPbS/bT71da/OEBYEwcdNUk8jYIy+D176RYoop1Da+f9mvkYrmj5MCLZWEtQuA==" crossorigin="anonymous" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/ol3/4.6.5/ol.js" integrity="sha512-O7kHS9ooekX8EveiC94z9xSvD/4xt10Qigl6uEKvspYykdux3Ci5QNu5fwi4ca0ZkZI/oCgx5ja8RklWUEqzxQ==" crossorigin="anonymous" defer></script>
+        <script src="https://cdn.jsdelivr.net/npm/sidebar-v2@0.4.0/js/ol3-sidebar.min.js" defer></script>
+        <script src="js/taiwan-pork-logo-map.js" type="text/javascript" defer></script>
+    </body>
+</html>
