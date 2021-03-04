@@ -11,8 +11,8 @@ $ git clone
 ----
 
 ## 畫面截圖
-![](https://i.imgur.com/XaZcgno.png)
+![](https://i.imgur.com/tsdZJWT.png)
 > 點擊綠色圖示後，右側會顯示詳細資訊，包括餐廳名稱、標章代碼以及有效日期等等
 
-![](https://i.imgur.com/Oy05rRL.png)
+![](https://i.imgur.com/lo4c4Uu.png)
 > 元旦開始豬肉和豬肉加工品都要依規定做好清楚產地標示，農委會負責台灣豬產地標章，現在有約 1 萬 1000 多家業者申請使用，「絕對百分之百用國產豬肉」
